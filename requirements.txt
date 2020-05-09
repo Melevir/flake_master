@@ -6,6 +6,10 @@ mypy==0.770
 mypy-extensions==0.4.3
 typing-extensions==3.7.4.2
 
+pytest==5.4.2
+pytest-cov==2.8.1
+pytest-network==0.0.1
+
 pydocstyle==3.0.0
 flake8==3.7.9
 flake8-2020==1.6.0
