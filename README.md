@@ -34,7 +34,7 @@ This will do the following:
 - add required packages to `requirements.txt`;
 - add plugins configuration to `setup.cfg`;
 - create `.flake_master` file with current preset version
-  (add the file to `.gitignore`).
+  (add the file to vsc).
 
 ## Upgrade
 

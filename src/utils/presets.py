@@ -1,48 +1,42 @@
 import configparser
 import json
 import os
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 from click import echo
 
-from common_types import Flake8Preset
+from common_types import Flake8Preset, Flake8PresetInfo
+from utils.preset_fetchers import load_preset_from_file, load_preset_from_url
 from utils.requirements import merge_requirements_data
 
 
-def fetch_preset(preset_name: str) -> Flake8Preset:
-    return Flake8Preset(  # TODO
-        name='test_preset',
-        revision='1',
-        config_url='https://github.com/',
-        flake8_plugins=[
-            ('pydocstyle', '3.0.0'),
-            ('flake8', '3.7.9'),
-            ('flake8-2020', '1.6.0'),
-            ('flake8-blind-except', '0.1.1'),
-            ('flake8-bugbear', '20.1.4'),
-        ],
-        flake8_config=[
-            ('max-complexity', '18'),
-            ('max-annotations-complexity', '4'),
-            ('max-line-length', '120'),
-            ('ignore', 'W503, P103, D'),
-        ],
-    )
+def fetch_preset(preset_name_or_url_or_path: str = None, preset_info: Flake8PresetInfo = None) -> Optional[Flake8Preset]:
+    preset_file_path = None
+    preset_url = None
+    preset = None
+    if (
+        preset_name_or_url_or_path
+        and preset_name_or_url_or_path.endswith('.cfg')
+        and os.path.exists(preset_name_or_url_or_path)
+    ):
+        preset_file_path = os.path.abspath(preset_name_or_url_or_path)
+    if preset_info and preset_info['filepath']:
+        preset_file_path = preset_info['filepath']
+    if preset_info and preset_info['url']:
+        preset_url = preset_info['url']
+
+    if preset_file_path:
+        preset = load_preset_from_file(preset_file_path)
+    if not preset and preset_url:
+        preset = load_preset_from_url(preset_url)
+    return preset
 
 
 def apply_preset_to_path(
     preset: Flake8Preset,
     project_path: str,
-    preset_file_name='.flake_master',
+    preset_file_name: str,
 ) -> None:
-    preset_file_path = os.path.join(project_path, preset_file_name)
-    if os.path.exists(preset_file_path):
-        echo(
-            f'Preset file ({preset_file_path}) already exists. Looks like flake master '
-            f'has already been deployed to {project_path}. May be you mean `upgrade`, not `setup`?',
-            err=True
-        )
-        exit(1)
     echo(f'\tAdding {len(preset.flake8_plugins)} requirements...')
     add_packages_to_requirements_file(
         preset.flake8_plugins,
@@ -108,5 +102,6 @@ def create_preset_file(preset: Flake8Preset, project_path: str, preset_file_name
         json.dump({
             'name': preset.name,
             'revision': preset.revision,
-            'url': preset.config_url
+            'url': preset.config_url,
+            'filepath': preset.filepath,
         }, file_handler)
