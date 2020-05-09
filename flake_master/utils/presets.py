@@ -5,9 +5,9 @@ from typing import List, Tuple, Optional
 
 from click import echo
 
-from common_types import Flake8Preset, Flake8PresetInfo
-from utils.preset_fetchers import load_preset_from_file, load_preset_from_url
-from utils.requirements import merge_requirements_data
+from flake_master.common_types import Flake8Preset, Flake8PresetInfo
+from flake_master.utils.preset_fetchers import load_preset_from_file, load_preset_from_url
+from flake_master.utils.requirements import merge_requirements_data
 
 
 def fetch_preset(

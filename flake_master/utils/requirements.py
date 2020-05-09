@@ -11,8 +11,8 @@ def merge_requirements_data(
     for package_name, package_version in flake8_plugins:
         match_line_num = None
         for old_requirement_num, old_requirement in enumerate(raw_old_requirements):
-            parsed_requirement = Requirement.parse(old_requirement)
-            if parsed_requirement.name == package_name:
+            parsed_requirement = Requirement.parse(old_requirement) if old_requirement.strip() else None
+            if parsed_requirement and parsed_requirement.name == package_name:
                 match_line_num = old_requirement_num
         if match_line_num is not None:
             raw_old_requirements.pop(match_line_num)

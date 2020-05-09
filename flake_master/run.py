@@ -3,7 +3,7 @@ import os
 
 from click import command, group, argument, Path, echo, pass_context
 
-from utils.presets import fetch_preset, apply_preset_to_path
+from flake_master.utils.presets import fetch_preset, apply_preset_to_path
 
 
 @group()

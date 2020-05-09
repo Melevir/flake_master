@@ -3,7 +3,7 @@ from typing import Optional
 
 from requests import get
 
-from common_types import Flake8Preset
+from flake_master.common_types import Flake8Preset
 
 
 def load_preset_from_file(preset_file_path: str) -> Optional[Flake8Preset]:
