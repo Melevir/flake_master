@@ -31,8 +31,8 @@ def fetch_preset(
 
 
 def extract_preset_credentials(
-    preset_name_or_url_or_path: str,
-    preset_info: Flake8PresetInfo,
+    preset_name_or_url_or_path: Optional[str],
+    preset_info: Optional[Flake8PresetInfo],
     presets_repo_url: str,
 ) -> Tuple[Optional[str], Optional[str]]:
     return (
@@ -42,8 +42,8 @@ def extract_preset_credentials(
 
 
 def extract_preset_file_path(
-    preset_name_or_url_or_path: str,
-    preset_info: Flake8PresetInfo,
+    preset_name_or_url_or_path: Optional[str],
+    preset_info: Optional[Flake8PresetInfo],
 ) -> Optional[str]:
     preset_file_path = None
     if (
@@ -58,8 +58,8 @@ def extract_preset_file_path(
 
 
 def extract_preset_url(
-    preset_name_or_url_or_path: str,
-    preset_info: Flake8PresetInfo,
+    preset_name_or_url_or_path: Optional[str],
+    preset_info: Optional[Flake8PresetInfo],
     presets_repo_url: str,
 ) -> Optional[str]:
     preset_url = None
