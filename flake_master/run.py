@@ -66,7 +66,10 @@ cli.add_command(setup)
 cli.add_command(upgrade)
 
 
-if __name__ == '__main__':
+def main():
     cli(
         obj={'preset_file_name': '.flake_master'},
     )
+
+if __name__ == '__main__':
+    main()

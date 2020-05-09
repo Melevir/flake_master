@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/Melevir/flake_master.svg?branch=master)](https://travis-ci.org/Melevir/flake_master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f69de0bcd500a0548840/maintainability)](https://codeclimate.com/github/Melevir/flake_master/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f69de0bcd500a0548840/test_coverage)](https://codeclimate.com/github/Melevir/flake_master/test_coverage)
+[![PyPI version](https://badge.fury.io/py/flake-master.svg)](https://badge.fury.io/py/flake-master)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/flake-master)
 
 flake_master is a manager for flake8 plugins and configuration.
 
