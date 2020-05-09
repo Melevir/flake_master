@@ -10,7 +10,11 @@ from utils.preset_fetchers import load_preset_from_file, load_preset_from_url
 from utils.requirements import merge_requirements_data
 
 
-def fetch_preset(preset_name_or_url_or_path: str = None, preset_info: Flake8PresetInfo = None) -> Optional[Flake8Preset]:
+def fetch_preset(
+    preset_name_or_url_or_path: str = None,
+    preset_info: Flake8PresetInfo = None,
+    presets_repo_url: str = 'https://raw.githubusercontent.com/Melevir/flake_master_presets',
+) -> Optional[Flake8Preset]:
     preset_file_path = None
     preset_url = None
     preset = None
@@ -20,10 +24,14 @@ def fetch_preset(preset_name_or_url_or_path: str = None, preset_info: Flake8Pres
         and os.path.exists(preset_name_or_url_or_path)
     ):
         preset_file_path = os.path.abspath(preset_name_or_url_or_path)
+    if preset_name_or_url_or_path and preset_name_or_url_or_path.startswith('http'):
+        preset_url = preset_name_or_url_or_path
     if preset_info and preset_info['filepath']:
         preset_file_path = preset_info['filepath']
     if preset_info and preset_info['url']:
         preset_url = preset_info['url']
+    if not preset_file_path and not preset_url and preset_name_or_url_or_path:
+        preset_url = f'{presets_repo_url}/master/presets/{preset_name_or_url_or_path}.cfg'
 
     if preset_file_path:
         preset = load_preset_from_file(preset_file_path)
