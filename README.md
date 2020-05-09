@@ -14,7 +14,8 @@ all projects up to date and synced.
 This is what flake master does.
 
 This library is inspired by eslint and does pretty much the same
-as flakehell. I'm bored.
+as nitpick or flakehell. I need simple tool that helps with
+flake8 configuration management. Also I'm bored.
 
 ## Installation
 
