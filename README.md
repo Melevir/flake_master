@@ -52,3 +52,22 @@ it to `requirements.txt` and `setup.py`.
 
 Beware, it can overwrite some data, that was updated by `flake_master` and
 then manually updated.
+
+## Contributing
+
+We would love you to contribute to our project. It's simple:
+
+- Create an issue with bug you found or proposal you have.
+  Wait for approve from maintainer.
+- Create a pull request. Make sure all checks are green.
+- Fix review comments if any.
+- Be awesome.
+
+Here are useful tips:
+
+- You can run all checks and tests with `make check`. Please do it
+  before TravisCI does.
+- We use
+  [BestDoctor python styleguide](https://github.com/best-doctor/guides/blob/master/guides/en/python_styleguide.md).
+- We respect [Django CoC](https://www.djangoproject.com/conduct/).
+  Make soft, not bullshit.
