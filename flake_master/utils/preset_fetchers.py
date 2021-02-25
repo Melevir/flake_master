@@ -1,6 +1,7 @@
 import configparser
 from typing import Optional
 
+import deal
 from requests import get
 
 from flake_master.common_types import Flake8Preset
@@ -17,6 +18,7 @@ def load_preset_from_url(preset_url: str) -> Optional[Flake8Preset]:
     return parse_preset_from_str_config(raw_text, preset_url=preset_url)
 
 
+@deal.pure
 def parse_preset_from_str_config(
     raw_text: str,
     preset_file_path: str = None,

@@ -1,8 +1,10 @@
 from typing import List, Tuple, Optional
 
+import deal
 from requirements.requirement import Requirement
 
 
+@deal.pure
 def merge_requirements_data(
     raw_old_requirements: List[str],
     flake8_plugins: List[Tuple[str, str]],
@@ -24,7 +26,11 @@ def find_requirement_in_list(package_name: str, raw_old_requirements: List[str])
         requirement_str = old_requirement.strip()
         if requirement_str.startswith('#'):
             continue
-        parsed_requirement = Requirement.parse(requirement_str) if requirement_str else None
+        try:
+            parsed_requirement = Requirement.parse(requirement_str) if requirement_str else None
+        except ValueError:
+            # happens on weird chars in requirements, like `parsed_requirement = 'A  # \x850'`
+            continue
         if parsed_requirement and parsed_requirement.name == package_name:
             match_line_num = old_requirement_num
     return match_line_num

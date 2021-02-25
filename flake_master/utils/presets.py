@@ -3,6 +3,7 @@ import json
 import os
 from typing import List, Tuple, Optional
 
+import deal
 from click import echo
 
 from flake_master.common_types import Flake8Preset, Flake8PresetInfo
@@ -30,6 +31,7 @@ def fetch_preset(
     return preset
 
 
+@deal.pure
 def extract_preset_credentials(
     preset_name_or_url_or_path: Optional[str],
     preset_info: Optional[Flake8PresetInfo],
@@ -41,6 +43,7 @@ def extract_preset_credentials(
     )
 
 
+@deal.pure
 def extract_preset_file_path(
     preset_name_or_url_or_path: Optional[str],
     preset_info: Optional[Flake8PresetInfo],
@@ -57,6 +60,7 @@ def extract_preset_file_path(
     return preset_file_path
 
 
+@deal.pure
 def extract_preset_url(
     preset_name_or_url_or_path: Optional[str],
     preset_info: Optional[Flake8PresetInfo],
