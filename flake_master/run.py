@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 
 from click import command, group, argument, Path, echo, pass_context
 
@@ -8,7 +9,7 @@ from flake_master.utils.presets import fetch_preset, apply_preset_to_path
 
 @group()
 def cli():
-    pass
+    pass # an empty block
 
 
 @command()
